@@ -12,10 +12,10 @@ if [ -z "$MINIO_ACCESS_KEY" ] || [ -z "$MINIO_SECRET_KEY" ] || [ -z "$MINIO_ENDP
   echo "Error: MinIO credentials are not set."
   exit 1
 fi
-if [ -z "$GPU_NAME" ]; then
-  echo "Error: GPU name is not set."
-  exit 1
-fi
+# if [ -z "$GPU_NAME" ]; then
+#   echo "Error: GPU name is not set."
+#   exit 1
+# fi
 
 # # Check if hf-creds.sh exists
 # if [ ! -f "./hf-creds.sh" ]; then
@@ -74,7 +74,7 @@ spec:
               min: '1'
               # productName: ${GPU_NAME}
               nodeSelector:
-                group: 'rag-base'
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
 
         models:
           - name: granite-3-3-8b
@@ -101,7 +101,7 @@ spec:
               min: '1'
               # productName: ${GPU_NAME}
               nodeSelector:
-                group: 'rag-base'
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'

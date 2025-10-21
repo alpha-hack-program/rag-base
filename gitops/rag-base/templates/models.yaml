@@ -135,7 +135,7 @@ spec:
         - '{{ .maxModelLen }}'
         {{- end }}
         {{- /* If productName contains T4, then use float16 and tensor-parallel-size */ -}}
-        {{- if .accelerator.productName | regexMatch "T4" }}
+        {{- if and .accelerator.productName (.accelerator.productName | regexMatch "T4") }}
         - '--dtype'
         - float16
         - '--tensor-parallel-size={{ .accelerator.max }}'
