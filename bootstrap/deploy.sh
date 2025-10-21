@@ -60,7 +60,7 @@ spec:
             runtime:
               templateName: vllm-serving-template
               templateDisplayName: vLLM Serving Template
-              image: quay.io/modh/vllm:rhoai-2.20-cuda
+              image: quay.io/modh/vllm:rhoai-2.24-cuda
               resources:
                 limits:
                   cpu: '2'
@@ -74,8 +74,57 @@ spec:
               min: '1'
               # productName: ${GPU_NAME}
               nodeSelector:
-                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
-
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+          # - name: bge-m3-gpu
+          #   displayName: BGE M3 GPU
+          #   model: BAAI/bge-m3
+          #   image: quay.io/atarazana/modelcar-catalog:bge-m3
+          #   maxModelLen: '8192'
+          #   runtime:
+          #     templateName: vllm-serving-template
+          #     templateDisplayName: vLLM Serving Template
+          #     image: quay.io/modh/vllm:rhoai-2.24-cuda
+          #     resources:
+          #       limits:
+          #         cpu: '2'
+          #         memory: 8Gi
+          #       requests:
+          #         cpu: '1'
+          #         memory: 4Gi
+          #   accelerator:
+          #     type: ${GPU_TYPE:-nvidia.com/gpu}
+          #     max: '1'
+          #     min: '1'
+          #     # productName: ${GPU_NAME}
+          #     nodeSelector:
+          #       ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+          - name: jina-embeddings-v3-gpu
+            displayName: Jina Embeddings v3 GPU
+            model: jinaai/jina-embeddings-v3
+            image: quay.io/atarazana/modelcar-catalog:jina-embeddings-v3
+            maxModelLen: '8192'
+            runtime:
+              templateName: vllm-serving-template
+              templateDisplayName: vLLM Serving Template
+              image: quay.io/modh/vllm:rhoai-2.24-cuda
+              resources:
+                limits:
+                  cpu: '2'
+                  memory: 8Gi
+                requests:
+                  cpu: '1'
+                  memory: 4Gi
+            accelerator:
+              type: ${GPU_TYPE:-nvidia.com/gpu}
+              max: '1'
+              min: '1'
+              # productName: ${GPU_NAME}
+              nodeSelector:
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+             env:
+              - name: HF_HUB_OFFLINE
+                value: '0'
+                
         models:
           - name: granite-3-3-8b
             displayName: Granite 3.3 8B
@@ -101,7 +150,7 @@ spec:
               min: '1'
               # productName: ${GPU_NAME}
               nodeSelector:
-                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'
@@ -132,7 +181,7 @@ spec:
               min: '1'
               # productName: ${GPU_NAME}
               nodeSelector:
-                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'

@@ -159,6 +159,10 @@ spec:
           value: /tmp/hf_home
         - name: VLLM_CACHE_ROOT
           value: /tmp
+      {{- range .env }}
+        - name: {{ .name }}
+          value: "{{ .value }}"
+      {{- end }}
       image: '{{ .runtime.image }}'
       name: kserve-container
       ports:
