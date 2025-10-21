@@ -69,9 +69,12 @@ spec:
                   cpu: '1'
                   memory: 4Gi
             accelerator:
+              type: ${GPU_TYPE:-nvidia.com/gpu}
               max: '1'
               min: '1'
-              productName: ${GPU_NAME}
+              # productName: ${GPU_NAME}
+              nodeSelector:
+                group: 'rag-base'
 
         models:
           - name: granite-3-3-8b
@@ -93,9 +96,12 @@ spec:
                   cpu: '6'
                   memory: 24Gi
             accelerator:
+              type: ${GPU_TYPE:-nvidia.com/gpu}
               max: '1'
               min: '1'
-              productName: ${GPU_NAME}
+              # productName: ${GPU_NAME}
+              nodeSelector:
+                group: 'rag-base'
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'
@@ -121,9 +127,12 @@ spec:
                   cpu: '6'
                   memory: 24Gi
             accelerator:
+              type: ${GPU_TYPE:-nvidia.com/gpu}
               max: '1'
               min: '1'
-              productName: ${GPU_NAME}
+              # productName: ${GPU_NAME}
+              nodeSelector:
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}§
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'

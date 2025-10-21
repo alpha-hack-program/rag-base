@@ -50,7 +50,7 @@ spec:
         {{- if or .accelerator.max .runtime.resources.limits.cpu .runtime.resources.limits.memory }}
         limits:
           {{- if .accelerator.max }}    
-          nvidia.com/gpu: '{{ .accelerator.max }}'
+          {{ .accelerator.type | default "nvidia.com/gpu" }}: '{{ .accelerator.max }}'
           {{- end }}
           {{- if .runtime.resources.limits.cpu }}
           cpu: '{{ .runtime.resources.limits.cpu }}'
@@ -63,7 +63,7 @@ spec:
           # If any or accelator min or requests are set, then the requests will be set accordingly
           {{- if or .accelerator.min .runtime.resources.requests.cpu .runtime.resources.requests.memory }}
           {{- if .accelerator.min }}
-          nvidia.com/gpu: '{{ .accelerator.min }}'
+          {{ .accelerator.type | default "nvidia.com/gpu" }}: '{{ .accelerator.min }}'
           {{- end }}
           {{- if .runtime.resources.requests.cpu }}
           cpu: '{{ .runtime.resources.requests.cpu }}'
@@ -75,12 +75,19 @@ spec:
     {{- if .accelerator.min }}
     tolerations:
       - effect: NoSchedule
-        key: nvidia.com/gpu
+        key: {{ .accelerator.type }}
         operator: Exists
     {{- end }}
-    {{- if .accelerator.productName }}
+    {{- with .accelerator }}
+    {{- if .productName }}
     nodeSelector:
-      nvidia.com/gpu.product: {{ .accelerator.productName }}
+      {{ .type }}.product: {{ .productName }}
+    {{- else if .nodeSelector }}
+    nodeSelector:
+      {{- range $key, $value := .nodeSelector }}
+      {{ $key }}: {{ $value }}
+      {{- end }}
+    {{- end }}
     {{- end }}
 {{- if and .rawDeployment .externalAccess }}
 ---

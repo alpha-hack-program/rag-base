@@ -32,9 +32,12 @@ embeddings:
           cpu: '1'
           memory: 4Gi
     accelerator:
+      type: nvidia.com/gpu
       max: '1'
       min: '1'
-      productName: NVIDIA-A10G
+      # productName: NVIDIA-A10G
+      # nodeSelector:
+      #   group: 'rag-base'
 
 models:
   - name: granite-3-3-8b
@@ -57,9 +60,12 @@ models:
           cpu: '6'
           memory: 24Gi
     accelerator:
+      type: nvidia.com/gpu
       max: '1'
       min: '1'
-      productName: NVIDIA-A10G
+      # productName: NVIDIA-A10G
+      # nodeSelector:
+      #   group: 'rag-base'
     args:
       - '--enable-auto-tool-choice'
       - '--tool-call-parser'
@@ -86,9 +92,12 @@ models:
           cpu: '6'
           memory: 24Gi
     accelerator:
+      type: nvidia.com/gpu
       max: '1'
       min: '1'
-      productName: NVIDIA-A10G
+      # productName: NVIDIA-A10G
+      # nodeSelector:
+      #   group: 'rag-base'
     args:
       - --enable-auto-tool-choice
       - --tool-call-parser
