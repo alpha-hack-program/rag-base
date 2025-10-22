@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: attu
-        image: zilliz/attu:v2.3.8
+        image: zilliz/attu:v2.5
         imagePullPolicy: IfNotPresent
         ports:
         - name: attu
