@@ -60,6 +60,7 @@ spec:
             model: intfloat/multilingual-e5-large
             image: quay.io/atarazana/modelcar-catalog:multilingual-e5-large
             maxModelLen: '512'
+            externalAccess: true
             runtime:
               templateName: vllm-serving-template
               templateDisplayName: vLLM Serving Template
@@ -78,34 +79,37 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-          # - name: bge-m3-gpu
-          #   displayName: BGE M3 GPU
-          #   model: BAAI/bge-m3
-          #   image: quay.io/atarazana/modelcar-catalog:bge-m3
-          #   maxModelLen: '8192'
-          #   runtime:
-          #     templateName: vllm-serving-template
-          #     templateDisplayName: vLLM Serving Template
-          #     image: quay.io/modh/vllm:rhoai-2.24-cuda
-          #     resources:
-          #       limits:
-          #         cpu: '2'
-          #         memory: 8Gi
-          #       requests:
-          #         cpu: '1'
-          #         memory: 4Gi
-          #   accelerator:
-          #     type: ${GPU_TYPE:-nvidia.com/gpu}
-          #     max: '1'
-          #     min: '1'
-          #     # productName: ${GPU_NAME}
-          #     nodeSelector:
-          #       ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+          - name: bge-m3-gpu
+            displayName: BGE M3 GPU
+            model: BAAI/bge-m3
+            image: quay.io/atarazana/modelcar-catalog:bge-m3
+            maxModelLen: '8192'
+            externalAccess: true
+            runtime:
+              templateName: vllm-serving-template
+              templateDisplayName: vLLM Serving Template
+              image: quay.io/modh/vllm:rhoai-2.24-cuda
+              resources:
+                limits:
+                  cpu: '2'
+                  memory: 8Gi
+                requests:
+                  cpu: '1'
+                  memory: 4Gi
+            accelerator:
+              type: ${GPU_TYPE:-nvidia.com/gpu}
+              max: '1'
+              min: '1'
+              # productName: ${GPU_NAME}
+              nodeSelector:
+                ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+                model: jina
           - name: jina-embeddings-v3-gpu
             displayName: Jina Embeddings v3 GPU
             model: jinaai/jina-embeddings-v3
             image: quay.io/atarazana/modelcar-catalog:jina-embeddings-v3
             maxModelLen: '8192'
+            externalAccess: true
             runtime:
               templateName: vllm-serving-template
               templateDisplayName: vLLM Serving Template

@@ -48,6 +48,7 @@ spec:
             id: {{ .model }}
             url: http://{{ .name }}-predictor:8080
             model: {{ .name }}
+            dimension: {{ .vectorDimension | default 1024 }}
             api_key: ""
         {{- end }}
 

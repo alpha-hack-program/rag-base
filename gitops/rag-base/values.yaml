@@ -22,6 +22,8 @@ embeddings:
     model: intfloat/multilingual-e5-large
     image: quay.io/atarazana/modelcar-catalog:multilingual-e5-large
     maxModelLen: '512'
+    vectorDimension: 1024
+    externalAccess: true
     runtime:
       templateName: vllm-serving-template
       templateDisplayName: vLLM Serving Template

@@ -89,7 +89,7 @@ spec:
       {{- end }}
     {{- end }}
     {{- end }}
-{{- if and .rawDeployment .externalAccess }}
+{{- if and (default true .rawDeployment) .externalAccess }}
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
