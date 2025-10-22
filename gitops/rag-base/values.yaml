@@ -14,6 +14,8 @@ vcs:
 
 embeddingsDefaultModel: multilingual-e5-large-gpu
 
+minimumCosineDistance: 0.85
+
 embeddings:
   - name: multilingual-e5-large-gpu
     displayName: multilingual-e5-large GPU

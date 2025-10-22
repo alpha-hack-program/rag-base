@@ -40,6 +40,7 @@ spec:
         {{- end }}
         
         embeddingsDefaultModel: {{ .Values.embeddingsDefaultModel }}
+        minimumCosineDistance: {{ .Values.minimumCosineDistance }}
 
         embeddings:
         {{- range .Values.embeddings }}

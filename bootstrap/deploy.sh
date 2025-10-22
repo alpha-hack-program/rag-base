@@ -51,6 +51,9 @@ spec:
 
         instanceName: ${APP_NAME:-rag-base}
 
+        minimumCosineDistance: ${MINIMUM_COSINE_DISTANCE:-0.85}
+        embeddingsDefaultModel: ${EMBEDDINGS_DEFAULT_MODEL:-multilingual-e5-large-gpu}
+
         embeddings:
           - name: multilingual-e5-large-gpu
             displayName: multilingual-e5-large GPU
@@ -121,7 +124,8 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-             env:
+                model: jina
+            env:
               - name: HF_HUB_OFFLINE
                 value: '0'
                 

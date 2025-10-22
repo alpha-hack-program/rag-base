@@ -24,6 +24,8 @@ mountCaCerts: "false"
 
 embeddingsDefaultModel: multilingual-e5-large-gpu
 
+minimumCosineDistance: 0.85
+
 embeddings:
   - name: multilingual-e5-large-gpu
     url: http://multilingual-e5-large-gpu-predictor:8080
