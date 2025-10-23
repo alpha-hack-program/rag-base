@@ -79,6 +79,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+                embedding: 'true'
           - name: bge-m3-gpu
             displayName: BGE M3 GPU
             model: BAAI/bge-m3
@@ -103,7 +104,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-                model: jina
+                embedding: 'true'
           - name: jina-embeddings-v3-gpu
             displayName: Jina Embeddings v3 GPU
             model: jinaai/jina-embeddings-v3
@@ -128,7 +129,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-                model: jina
+                embedding: 'true'
             env:
               - name: HF_HUB_OFFLINE
                 value: '0'
@@ -159,6 +160,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+                model: granite
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'
@@ -190,6 +192,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
+                model: llama
             args:
               - '--enable-auto-tool-choice'
               - '--tool-call-parser'
