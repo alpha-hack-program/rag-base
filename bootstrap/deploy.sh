@@ -60,6 +60,7 @@ spec:
             model: intfloat/multilingual-e5-large
             image: quay.io/atarazana/modelcar-catalog:multilingual-e5-large
             maxModelLen: '512'
+            vectorDimension: 1024
             externalAccess: true
             runtime:
               templateName: vllm-serving-template
@@ -85,6 +86,7 @@ spec:
             model: BAAI/bge-m3
             image: quay.io/atarazana/modelcar-catalog:bge-m3
             maxModelLen: '8192'
+            vectorDimension: 1024
             externalAccess: true
             runtime:
               templateName: vllm-serving-template
@@ -110,6 +112,7 @@ spec:
             model: jinaai/jina-embeddings-v3
             image: quay.io/atarazana/modelcar-catalog:jina-embeddings-v3
             maxModelLen: '8192'
+            vectorDimension: 1024
             externalAccess: true
             runtime:
               templateName: vllm-serving-template
