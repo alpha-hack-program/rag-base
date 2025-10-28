@@ -80,7 +80,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-                embedding: 'true'
+                modelType: 'embedding'
           - name: bge-m3-gpu
             displayName: BGE M3 GPU
             model: BAAI/bge-m3
@@ -106,7 +106,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-                embedding: 'true'
+                modelType: 'embedding'
           - name: jina-embeddings-v3-gpu
             displayName: Jina Embeddings v3 GPU
             model: jinaai/jina-embeddings-v3
@@ -132,7 +132,7 @@ spec:
               # productName: ${GPU_NAME}
               nodeSelector:
                 ${NODE_SELECTOR_KEY}: ${NODE_SELECTOR_VALUE}
-                embedding: 'true'
+                modelType: 'embedding'
             env:
               - name: HF_HUB_OFFLINE
                 value: '0'
